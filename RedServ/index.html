@@ -1,0 +1,19 @@
+<script>
+
+async function main() {
+    const redirects = await fetch('/service/redirects.json')
+        .then(r => r.json());
+
+    const path = location.pathname.replace('/service', '');
+
+    if (redirects[path]) {
+        location.replace(redirects[path]);
+        return;
+    }
+
+    document.body.innerHTML = "404";
+}
+
+main();
+
+</script>
